@@ -1,5 +1,4 @@
 const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -8,30 +7,58 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body',
 });
 
-module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './src/index.js',
-  ],
+const entry = './src/index.js';
+
+const baseConfig = {
   output: {
     path: path.resolve('dist'),
-    filename: 'bundle.js',
-  },
-  devServer: {
-    contentBase: './dist',
+    filename: 'bundle.[hash].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      components: path.resolve('./src/components'),
+      modules: path.resolve('./src/modules'),
+    },
   },
   plugins: [HtmlWebpackPluginConfig],
+};
+
+const devConfig = {
+  ...baseConfig,
+  entry: [entry],
+  devtool: 'sourcemap',
+  devServer: {
+    contentBase: path.resolve('dist'),
+    hot: true,
+    compress: true,
+    port: 9000,
+    inline: false,
+    noInfo: true,
+    open: true,
+  },
+};
+
+const prodConfig = {
+  ...baseConfig,
+  entry,
+};
+
+module.exports = function (env = 'dev') {
+  switch (env) {
+    case 'dev':
+      return devConfig;
+    case 'prod':
+      return prodConfig;
+    default:
+      return devConfig;
+  }
 };
