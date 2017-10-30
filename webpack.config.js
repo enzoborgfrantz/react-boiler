@@ -10,6 +10,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 const entry = './src/index.js';
 
 const baseConfig = {
+  entry,
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.[hash].js',
@@ -34,7 +35,6 @@ const baseConfig = {
 
 const devConfig = {
   ...baseConfig,
-  entry: [entry],
   devtool: 'sourcemap',
   devServer: {
     contentBase: path.resolve('dist'),
@@ -45,11 +45,19 @@ const devConfig = {
     noInfo: true,
     open: true,
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  },
+  performance: {
+    hints: 'warning',
+  },
 };
 
 const prodConfig = {
   ...baseConfig,
-  entry,
+  performance: {
+    hints: 'error',
+  },
 };
 
 module.exports = function (env = 'dev') {
