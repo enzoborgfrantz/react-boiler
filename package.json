@@ -13,12 +13,6 @@
     "test:coverage": "npm test -- --watch --coverage",
     "lint:css": "stylelint './src/components/*.js'"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/enzoborgfrantz/react-boiler.git"

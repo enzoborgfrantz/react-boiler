@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import React from 'react';
 import PropTypes from 'prop-types';
 import helloWorld from '../modules/hello.module';
