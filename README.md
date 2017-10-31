@@ -1,4 +1,6 @@
 # :fire: react-boiler :fire:
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 Boilerplate Project for React.
 
 > Simple setup that comes with hot-reloading, styled-components, and test setup with watch and coverage
