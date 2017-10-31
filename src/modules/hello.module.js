@@ -1,3 +1,4 @@
 export default function () {
-  return 'Hello World.';
+  const value = 'Hello World.';
+  return value;
 }

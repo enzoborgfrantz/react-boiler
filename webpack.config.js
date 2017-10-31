@@ -81,11 +81,11 @@ const analyzeConfig = {
   plugins: [...prodConfig.plugins, new BundleAnalyzerPlugin()],
 };
 
-module.exports = function (env = 'dev') {
-  switch (env) {
-    case 'dev':
+module.exports = () => {
+  switch (process.env.NODE_ENV) {
+    case 'development':
       return devConfig;
-    case 'prod':
+    case 'production':
       return prodConfig;
     case 'analyze':
       return analyzeConfig;
