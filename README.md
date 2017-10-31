@@ -41,7 +41,9 @@ Boilerplate Project for React.
 ### Presets
 
 [`env`](https://babeljs.io/docs/plugins/preset-env) - Allows the use of es2015, es2016 & es2017 features
+
 [`stage-0`](https://babeljs.io/docs/plugins/preset-stage-0/) - Allows the use of upcoming es features at stage 0 and greater
+
 [`react`](https://babeljs.io/docs/plugins/preset-react) - Transforms jsx to js
 
 ### Plugins
