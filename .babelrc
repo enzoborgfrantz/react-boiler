@@ -5,7 +5,8 @@
     "react"
   ],
   "plugins": [
-    "styled-components"
+    "styled-components",
+    "transform-runtime"
   ],
   "env": {
     "production": {

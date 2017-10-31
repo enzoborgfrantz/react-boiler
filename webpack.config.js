@@ -1,94 +1,94 @@
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const DefinePlugin = webpack.DefinePlugin;
 const ModuleConcatenationPlugin = webpack.optimize.ModuleConcatenationPlugin;
 
 const baseConfig = {
-  entry: "./src/index.js",
+  entry: ['./src/polyfills', './src/index.js'],
   output: {
-    path: path.resolve("dist"),
-    filename: "bundle.[hash].js"
+    path: path.resolve('dist'),
+    filename: 'bundle.[hash].js',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: "babel-loader",
-        exclude: /node_modules/
-      }
-    ]
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
     alias: {
-      components: path.resolve("./src/components"),
-      modules: path.resolve("./src/modules")
-    }
+      components: path.resolve('./src/components'),
+      modules: path.resolve('./src/modules'),
+    },
   },
   plugins: [
-    new CleanWebpackPlugin("dist"),
+    new CleanWebpackPlugin('dist'),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-      inject: "body"
-    })
-  ]
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+    }),
+  ],
 };
 
 const devConfig = {
   ...baseConfig,
-  devtool: "sourcemap",
+  devtool: 'sourcemap',
   devServer: {
-    contentBase: path.resolve("dist"),
+    contentBase: path.resolve('dist'),
     hot: true,
     compress: true,
     port: 9000,
     inline: false,
     noInfo: true,
-    open: true
+    open: true,
   },
   watchOptions: {
-    ignored: /node_modules/
+    ignored: /node_modules/,
   },
   performance: {
-    hints: "warning"
-  }
+    hints: 'warning',
+  },
 };
 
 const prodConfig = {
   ...baseConfig,
   performance: {
-    hints: "error"
+    hints: 'error',
   },
   plugins: [
     ...baseConfig.plugins,
     new DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new ModuleConcatenationPlugin(),
-    new UglifyJSPlugin()
-  ]
+    new UglifyJSPlugin(),
+  ],
 };
 
 const analyzeConfig = {
   ...prodConfig,
-  plugins: [...prodConfig.plugins, new BundleAnalyzerPlugin()]
+  plugins: [...prodConfig.plugins, new BundleAnalyzerPlugin()],
 };
 
-module.exports = () => {
-  switch (process.env.NODE_ENV) {
-    case "development":
+module.exports = (env = 'dev') => {
+  switch (env) {
+    case 'dev':
       return devConfig;
-    case "production":
+    case 'prod':
       return prodConfig;
-    case "analyze":
+    case 'analyze':
       return analyzeConfig;
     default:
       return devConfig;
