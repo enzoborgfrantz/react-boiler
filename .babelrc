@@ -5,8 +5,19 @@
   ],
   "plugins": [
     "transform-object-rest-spread",
-    "transform-react-inline-elements",
-    "transform-class-properties",
-    "styled-components"
-  ]
+    "transform-class-properties"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-react-inline-elements",
+        "transform-react-remove-prop-types"
+      ]
+    },
+    "development": {
+      "plugins": [
+        "styled-components"
+      ]
+    }
+  }
 }

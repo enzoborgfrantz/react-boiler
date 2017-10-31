@@ -2,17 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
-  filename: 'index.html',
-  inject: 'body',
-});
-
-const entry = './src/index.js';
+const DefinePlugin = webpack.DefinePlugin;
+const ModuleConcatenationPlugin = webpack.optimize.ModuleConcatenationPlugin;
 
 const baseConfig = {
-  entry,
+  entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.[hash].js',
@@ -32,7 +29,14 @@ const baseConfig = {
       modules: path.resolve('./src/modules'),
     },
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    new CleanWebpackPlugin('dist'),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'body',
+    }),
+  ],
 };
 
 const devConfig = {
@@ -62,13 +66,19 @@ const prodConfig = {
   },
   plugins: [
     ...baseConfig.plugins,
-    new UglifyJSPlugin(),
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
+    new ModuleConcatenationPlugin(),
+    new UglifyJSPlugin(),
   ],
+};
+
+const analyzeConfig = {
+  ...prodConfig,
+  plugins: [...prodConfig.plugins, new BundleAnalyzerPlugin()],
 };
 
 module.exports = function (env = 'dev') {
@@ -77,6 +87,8 @@ module.exports = function (env = 'dev') {
       return devConfig;
     case 'prod':
       return prodConfig;
+    case 'analyze':
+      return analyzeConfig;
     default:
       return devConfig;
   }
