@@ -1,4 +1,2 @@
-import fetch from 'unfetch';
-require('es6-promise/auto');
-
-window.fetch = fetch;
+import Promise from 'promise-polyfill';
+import 'unfetch/polyfill';

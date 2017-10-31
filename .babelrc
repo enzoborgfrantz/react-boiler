@@ -6,7 +6,8 @@
   ],
   "plugins": [
     "styled-components",
-    "transform-runtime"
+    "transform-runtime",
+    "dynamic-import-webpack"
   ],
   "env": {
     "production": {

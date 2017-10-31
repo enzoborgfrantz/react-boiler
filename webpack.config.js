@@ -10,10 +10,13 @@ const DefinePlugin = webpack.DefinePlugin;
 const ModuleConcatenationPlugin = webpack.optimize.ModuleConcatenationPlugin;
 
 const baseConfig = {
-  entry: ['./src/polyfills', './src/index.js'],
+  entry: {
+    polyfills: './src/polyfills.js',
+    index: './src/index.js',
+  },
   output: {
     path: path.resolve('dist'),
-    filename: 'bundle.[hash].js',
+    filename: '[name].js',
   },
   module: {
     rules: [
