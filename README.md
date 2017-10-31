@@ -51,6 +51,8 @@ Boilerplate Project for React.
 
 [`styled-components`](https://github.com/styled-components/babel-plugin-styled-components) - Allows for better debugging & minification 
 
+[`runtime-transform`](https://babeljs.io/docs/plugins/transform-runtime/) - Used to enable the use of async actions, which require generator polyfills 
+
 #### prod
 
 [`transform-react-inline-elements`](https://babeljs.io/docs/plugins/transform-react-inline-elements/) - Compiler optimization which replaces the React.createElement function with babelHelpers.jsx
