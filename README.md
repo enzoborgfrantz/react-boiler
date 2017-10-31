@@ -51,4 +51,5 @@ Boilerplate Project for React.
 #### prod
 
 [`transform-react-inline-elements`](https://babeljs.io/docs/plugins/transform-react-inline-elements/) - Compiler optimization which replaces the React.createElement function with babelHelpers.jsx
+
 [`transform-react-remove-prop-types`](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types) - Remove propTypes from the build, making the bundle smaller 
