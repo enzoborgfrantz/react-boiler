@@ -58,9 +58,6 @@ const devConfig = {
   watchOptions: {
     ignored: /node_modules/,
   },
-  performance: {
-    hints: 'warning',
-  },
 };
 
 const prodConfig = {
