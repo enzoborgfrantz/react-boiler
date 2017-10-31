@@ -39,7 +39,7 @@ App.propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-export default function () {
+export default function() {
   const result = helloWorld();
   return <App text={result} />;
 }
