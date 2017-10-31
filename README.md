@@ -1,4 +1,4 @@
-# react-boiler
+# :fire: react-boiler :fire:
 Boilerplate Project for React.
 
 > Simple setup that comes with hot-reloading, styled-components, and test setup with watch and coverage
@@ -36,3 +36,11 @@ Boilerplate Project for React.
 #### analyze
 [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer) - Visualizes the output bundle, making it easy to see what's inside the bundle
 
+### Plugins
+
+[`styled-components`](https://github.com/styled-components/babel-plugin-styled-components) - Allows for better debugging & minification 
+
+#### prod
+
+[`transform-react-inline-elements`](https://babeljs.io/docs/plugins/transform-react-inline-elements/) - Compiler optimization which replaces the React.createElement function with babelHelpers.jsx
+[`transform-react-remove-prop-types`](https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types) - Remove propTypes from the build, making the bundle smaller 
