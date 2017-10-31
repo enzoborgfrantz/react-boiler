@@ -4,6 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Boiler</title>
+    <script>
+    (function() {
+  var shouldPolyfill = !window.fetch || !window.Promise;
+  if (!shouldPolyfill) {
+    var polyfillScript = document.createElement('script');
+    polyfillScript.async = false;
+    polyfillScript.src = '/polyfills.js';
+    document.head.appendChild(polyfillScript);
+  }
+})();
+</script>
   </head>
   <body>
     <div id="root"></div>

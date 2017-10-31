@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
-import helloWorld from '../modules/hello.module';
+import helloWorld from 'modules/hello.module';
 
 const Wrapper = styled.div`
   padding: 5px;
