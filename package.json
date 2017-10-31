@@ -4,7 +4,7 @@
   "description": "React boiler project",
   "main": "index.js",
   "scripts": {
-    "precommit": "lint-staged -c .lintstagedrc",
+    "precommit": "lint-staged --config .lintstagedrc",
     "start": "NODE_ENV=development && webpack-dev-server",
     "build": "NODE_ENV=production && webpack",
     "analyze": "NODE_ENV=analyze && webpack",
