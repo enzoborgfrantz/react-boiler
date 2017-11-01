@@ -7,10 +7,10 @@
     <script>
     (function() {
   var shouldPolyfill = !window.fetch || !window.Promise;
-  if (!shouldPolyfill) {
+  if (shouldPolyfill) {
     var polyfillScript = document.createElement('script');
     polyfillScript.async = false;
-    polyfillScript.src = '/polyfills.js';
+    polyfillScript.src = './polyfills.js';
     document.head.appendChild(polyfillScript);
   }
 })();

@@ -39,6 +39,7 @@ const baseConfig = {
       template: './src/index.html',
       filename: 'index.html',
       inject: 'body',
+      excludeChunks: ['polyfills'],
     }),
   ],
 };
