@@ -1,9 +1,5 @@
 {
-  "presets": [
-    "env",
-    "stage-0",
-    "react"
-  ],
+  "presets": ["env", "stage-0", "react"],
   "plugins": [
     "styled-components",
     "transform-runtime",
@@ -15,6 +11,9 @@
         "transform-react-inline-elements",
         "transform-react-remove-prop-types"
       ]
+    },
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
     }
   }
 }

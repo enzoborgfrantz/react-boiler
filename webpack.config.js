@@ -10,10 +10,11 @@ const DefinePlugin = webpack.DefinePlugin;
 const ModuleConcatenationPlugin = webpack.optimize.ModuleConcatenationPlugin;
 
 const baseConfig = {
-  entry: {
-    polyfills: './src/polyfills.js',
-    index: './src/index.js',
-  },
+  // entry: {
+  //   polyfills: './src/polyfills.js',
+  //   index: './src/index.js',
+  // },
+  entry: ['react-hot-loader/patch', './src/index.js'],
   output: {
     path: path.resolve('dist'),
     filename: '[name].js',
@@ -46,6 +47,7 @@ const baseConfig = {
 
 const devConfig = {
   ...baseConfig,
+  entry: ['react-hot-loader/patch', './src/index.js'],
   devtool: 'sourcemap',
   devServer: {
     contentBase: path.resolve('dist'),
@@ -59,6 +61,11 @@ const devConfig = {
   watchOptions: {
     ignored: /node_modules/,
   },
+  plugins: [
+    ...baseConfig.plugins,
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
 
 const prodConfig = {
