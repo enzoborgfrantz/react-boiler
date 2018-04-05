@@ -60,6 +60,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
+    "lodash": "^4.17.5",
     "promise-polyfill": "6.0.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",

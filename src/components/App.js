@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import helloWorld from 'modules/hello.module';
+import LazyRender from './LazyRender';
 
 const Wrapper = styled.div`
   padding: 5px;
@@ -31,7 +32,23 @@ const Title = styled.h1`
 
 const App = ({ text }) => (
   <Wrapper>
-    <Title>{`${text} :)`}</Title>
+    <div style={{ height: '1000px' }}>
+      <Title>{`${text} :)`}</Title>
+    </div>
+    <LazyRender>
+      <img
+        width={200}
+        height={200}
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+      />
+    </LazyRender>
+    <LazyRender>
+      <img
+        width={200}
+        height={200}
+        src="https://brickmakingmachinee.com/wp-content/uploads/2018/03/img-1276321340-1509471668915.jpg"
+      />
+    </LazyRender>
   </Wrapper>
 );
 
